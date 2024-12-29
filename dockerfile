@@ -2,9 +2,6 @@ FROM debian:trixie-slim
 
 EXPOSE 631
 
-ARG CUPS_USER_NAME=test
-ARG CUPS_USER_PASSWORD=test
-
 RUN apt update && apt install -y \
     cups \
     whois \

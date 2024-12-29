@@ -1,8 +1,6 @@
 name: Publish CUPS Docker Image to GHCR
 
-# Controls when the action will be run
 on:
-  # triggers on push or pull request events on main branch
   push:
     branches: [ main ]
 
@@ -49,7 +47,7 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
-          platforms: linux/arm/v7,linux/arm64,linux/amd64
+          platforms: linux/arm/v7 #,linux/arm64,linux/amd64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
