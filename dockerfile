@@ -4,8 +4,6 @@ EXPOSE 631
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Paris
-ENV CUPS_USER_NAME=print
-ENV CUPS_USER_PASSWORD=print
 
 RUN apt update && apt install -y \
     cups \
