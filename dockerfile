@@ -4,6 +4,8 @@ EXPOSE 631
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Paris
+ENV CUPS_USER_NAME=print
+ENV CUPS_USER_PASSWORD=print
 
 RUN apt update && apt install -y \
     cups \
@@ -11,11 +13,19 @@ RUN apt update && apt install -y \
     sudo \
     curl \
     samba \
-    tzdata
-
-RUN sudo apt install printer-driver-gutenprint -y
-RUN sudo apt install -y printer-driver-all
-RUN sudo apt clean
+    tzdata \
+    printer-driver-gutenprint \
+    printer-driver-all \
+    printer-driver-cups-pdf \
+    printer-driver-foo2zjs \
+    printer-driver-foo2zjs-common \
+    printer-driver-ptouch \
+    printer-driver-splix \
+    printer-driver-brlaser \
+    printer-driver-c2esp \
+    printer-driver-escpr \
+    printer-driver-foo2zjs \
+    && apt clean
 
 COPY --chown=root:lp cupsd.conf /etc/cups/cupsd.conf
 COPY smb.conf /etc/samba/smb.conf
