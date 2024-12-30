@@ -8,6 +8,8 @@ RUN apt update && apt install -y \
     sudo \
     curl \
     samba \
+    printer-driver-all \
+    printer-driver-gutenprint \
     && apt clean
 
 COPY --chown=root:lp cupsd.conf /etc/cups/cupsd.conf
