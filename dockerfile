@@ -1,6 +1,7 @@
 FROM ubuntu:jammy
 
 EXPOSE 631
+EXPOSE 5353/udp
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Paris
@@ -27,6 +28,10 @@ RUN apt update && apt install -y \
 
 COPY --chown=root:lp cupsd.conf /etc/cups/cupsd.conf
 COPY smb.conf /etc/samba/smb.conf
+
+# back up cups configs in case used does not add their own
+RUN cp -rp /etc/cups /etc/cups-bak
+VOLUME [ "/etc/cups" ]
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
